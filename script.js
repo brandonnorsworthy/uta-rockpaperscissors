@@ -5,11 +5,13 @@ var gameLosses = 0;
 
 function userWon() {
     gameWins += 1;
+    window.alert(`You won!`);
     return;
 }
 
 function computerWon() {
     gameLosses += 1;
+    window.alert(`Computer won!`);
     return;
 }
 
@@ -24,10 +26,13 @@ function startGame() {
         computerChoice = Math.floor(Math.random() * 3); //pick variable 0-2
         if (computerChoice === 0) {
             computerChoice = 'R';
+            window.alert("Computer chose Rock");
         } else if (computerChoice === 1) {
             computerChoice = 'P';
+            window.alert("Computer chose Paper");
         } else if (computerChoice === 2) {
             computerChoice = 'S';
+            window.alert("Computer chose Scissors");
         }
 
         console.log (`userChoice: ` + userChoice + ` computerChoice: ` + computerChoice);
@@ -37,19 +42,19 @@ function startGame() {
         // if statement to compare to userChoice to compChoice
         if (userChoice === computerChoice) {
             gameTies += 1;
-            window.alert("Computer chose same its a tie")
+            window.alert("Its a tie")
         } else if ((userChoice === 'R') && (computerChoice === 'S')) {
             userWon();
         } else if ((userChoice === 'R') && (computerChoice === 'P')) {
             computerWon();
         } else if ((userChoice === 'P') && (computerChoice === 'R')) {
-            userWon();
+            computerWon();
         } else if ((userChoice === 'P') && (computerChoice === 'P')) {
             userWon();
         } else if ((userChoice === 'S') && (computerChoice === 'R')) {
             computerWon();
         } else if ((userChoice === 'S') && (computerChoice === 'P')) {
-            computerWon();
+            userWon();
         } else {
             console.log('something happendedf');
         }
@@ -63,9 +68,12 @@ function startGame() {
     // 4. Declare User [Win,Tie,Lose]
         //  Vars to hold userWIn, userTie, userLoss
     // 5. Store Value
-    window.alert(`Wins: ` + gameWins + ` Ties: ` + gameTies + ` Losses: ` + gameLosses);
+    window.alert(`Wins: ` + gameWins + `\nTies: ` + gameTies + `\nLosses: ` + gameLosses);
     // 6. Reset the Game
-    startGame();
+    playAgain = window.confirm(`Would you like to play again`)
+    if (playAgain) {
+        startGame();
+    }
         // What the starting state looks like
 }
 
